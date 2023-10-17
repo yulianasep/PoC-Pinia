@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Teléfono inteligente",
+      "price": 10000,
+      "description": "Un teléfono inteligente con una pantalla de 6.5 pulgadas y una cámara de 108 megapíxeles",
+      "image": "https://down-co.img.susercontent.com/file/cbc03c370d96fe0780a3a35ff731498a_tn",
+      "quantity": 5
+    },
+    {
+      "id": 2,
+      "name": "Ordenador portátil",
+      "price": 20000,
+      "description": "Un ordenador portátil con un procesador Intelhttps://example.com/ Core i7 y 16 GB de RAM",
+      "image": "https://www.muycomputerpro.com/wp-content/uploads/2022/01/Dell-XPS-13-Plus_4.jpg",
+      "quantity": 7
+    },
+    {
+      "id": 3,
+      "name": "Televisión inteligente",
+      "price": 30000,
+      "description": "Una televisión inteligente con una pantalla de 55 pulgadas y resolución 4K",
+      "image": "https://i.blogs.es/870b97/-xiaomi-tv-p1e-32/450_1000.jpg",
+      "quantity": 1
+    }
+  ]
+}
