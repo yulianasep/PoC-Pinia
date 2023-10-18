@@ -41,14 +41,17 @@ productStore.loadProducts();
 
 .product {
   width: 350px;
-  border: 0.2px solid white;
   border-radius: 1rem;
   box-sizing: border-box;
   overflow: hidden;
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.3);
 }
 
 .product img {
-  max-width: 100%;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  margin-bottom: 1rem;
 }
 
 .product-info {
