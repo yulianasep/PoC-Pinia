@@ -1,32 +1,53 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { Product } from "./useProductsStore";
+import { Product, useProductStore } from "./useProductsStore";
 
 export const useCartStore = defineStore("cart", () => {
   const cart = ref<Product[]>([]);
+  const productStore = useProductStore();
 
   function addToCart(product: Product) {
     const cartItem = cart.value.find((item) => item.id === product.id);
+    const productIndex = productStore.products.findIndex(
+      (item) => item.id === product.id
+    );
 
     if (cartItem) {
-      cartItem.quantity++;
+      if (productStore.products[product.id].quantity > 0) {
+        cartItem.quantity++;
+        productStore.products[productIndex].quantity--;
+      } else {
+        console.log("Product without Stock");
+      }
     } else {
-      cart.value.push({ ...product, quantity: 1 });
+      if (productStore.products[product.id].quantity > 0) {
+        cart.value.push({ ...product, quantity: 1 });
+        productStore.products[productIndex].quantity--;
+      } else {
+        console.log("Product without Stock");
+      }
     }
   }
 
   function removeFromCart(product: Product) {
-    const index = cart.value.findIndex((item) => item.id === product.id);
-    if (index !== -1) {
-      if (cart.value[index].quantity > 1) {
-        cart.value[index].quantity--;
+    const cartIndex = cart.value.findIndex((item) => item.id === product.id);
+    const productIndex = productStore.products.findIndex(
+      (item) => item.id === product.id
+    );
+
+    if (cartIndex !== -1) {
+      if (cart.value[cartIndex].quantity > 1) {
+        cart.value[cartIndex].quantity--;
+        productStore.products[productIndex].quantity++;
       } else {
-        cart.value.splice(index, 1);
+        cart.value.splice(cartIndex, 1);
+        productStore.products[productIndex].quantity++;
       }
     }
   }
 
   function clearCart() {
+    productStore.$reset();
     cart.value = [];
   }
 
