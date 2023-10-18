@@ -4,10 +4,9 @@
 
 1. [Introduction](#introduction)
 2. [Project Setup](#project-setup)
-3. [Folder Structure](#folder-structure)
-4. [Dependencies](#dependencies)
-5. [Getting Started](#getting-started)
-6. [Creating a Store with Pinia](#creating-a-store-with-pinia)
+3. [Dependencies](#dependencies)
+4. [Getting Started](#getting-started)
+5. [Creating a Store with Pinia](#creating-a-store-with-pinia)
 
 ## **Introduction**
 
@@ -34,10 +33,6 @@ const app = createApp(App);
 app.use(pinia);
 app.mount("#app");
 ```
-
-## **Folder Structure**
-
-The folder structure of this project ...
 
 ## **Dependencies**
 
@@ -84,3 +79,22 @@ bun build
 ```
 
 ## **Creating a Store with Pinia**
+
+```ts
+import { defineStore } from "pinia";
+
+//We define the composable function that is going to represent the store, it requires a unique name, passed as the first argument and accepts two distinct values for its second argument: a Setup function or an Options object.
+export const useCartStore = defineStore("cart", () => {
+  const cart = ref<Product[]>([]);
+
+  function addToCart(product: Product) {
+    //We have to create the logic of the function
+  }
+
+  return {
+    //We return the data that we want to expose
+    cart,
+    addToCart,
+  };
+});
+```
