@@ -1,4 +1,3 @@
-// productStore.js
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { fetchProducts } from "../services/fetchProducts";
@@ -24,8 +23,18 @@ export const useProductStore = defineStore("products", () => {
     }
   }
 
+  async function $reset() {
+    try {
+      products.value = [];
+      await loadProducts();
+    } catch (error) {
+      throw new Error("Error resetting and loading products:");
+    }
+  }
+
   return {
     products,
     loadProducts,
+    $reset,
   };
 });
