@@ -23,10 +23,11 @@ export const useProductStore = defineStore("products", () => {
     }
   }
 
-  async function $reset() {
+  async function reset() {
     try {
       products.value = [];
       await loadProducts();
+      console.log(products.value);
     } catch (error) {
       throw new Error("Error resetting and loading products:");
     }
@@ -35,6 +36,6 @@ export const useProductStore = defineStore("products", () => {
   return {
     products,
     loadProducts,
-    $reset,
+    reset,
   };
 });

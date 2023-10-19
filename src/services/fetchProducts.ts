@@ -1,6 +1,6 @@
 import { products } from "../utils/productsMock.json";
 
-export function fetchProducts() {
-  const data = products;
+export async function fetchProducts() {
+  const data = structuredClone(products);
   return data;
 }
