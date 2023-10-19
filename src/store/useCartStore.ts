@@ -4,32 +4,33 @@ import { Product, useProductStore } from "./useProductsStore";
 
 export const useCartStore = defineStore("cart", () => {
   const cart = ref<Product[]>([]);
-  const productStore = useProductStore();
 
   function addToCart(product: Product) {
+    const productStore = useProductStore();
     const cartItem = cart.value.find((item) => item.id === product.id);
     const productIndex = productStore.products.findIndex(
       (item) => item.id === product.id
     );
 
     if (cartItem) {
-      if (productStore.products[product.id].quantity > 0) {
+      if (productStore.products[productIndex].quantity > 0) {
         cartItem.quantity++;
         productStore.products[productIndex].quantity--;
       } else {
-        console.log("Product without Stock");
+        alert("Product without Stock");
       }
     } else {
-      if (productStore.products[product.id].quantity > 0) {
+      if (productStore.products[productIndex].quantity > 0) {
         cart.value.push({ ...product, quantity: 1 });
         productStore.products[productIndex].quantity--;
       } else {
-        console.log("Product without Stock");
+        alert("Product without Stock");
       }
     }
   }
 
   function removeFromCart(product: Product) {
+    const productStore = useProductStore();
     const cartIndex = cart.value.findIndex((item) => item.id === product.id);
     const productIndex = productStore.products.findIndex(
       (item) => item.id === product.id
@@ -46,8 +47,9 @@ export const useCartStore = defineStore("cart", () => {
     }
   }
 
-  function clearCart() {
-    productStore.$reset();
+  async function clearCart() {
+    const productStore = useProductStore();
+    await productStore.reset();
     cart.value = [];
   }
 
