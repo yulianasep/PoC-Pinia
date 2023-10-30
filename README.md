@@ -75,7 +75,7 @@ bun run dev
 Build the project:
 
 ```bash
-bun build
+bun run build
 ```
 
 ## **Creating a Store with Pinia**

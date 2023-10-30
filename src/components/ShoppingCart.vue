@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useCartStore } from "../store/useCartStore";
+import { useStore } from "../composables/useStore";
 
-const cartStore = useCartStore();
+const { cart, removeFromCart, getTotalCart, clearCart } = useStore();
 </script>
 
 <template>
@@ -9,16 +9,16 @@ const cartStore = useCartStore();
     <h2>Your Shopping Cart</h2>
     <section class="cart-products">
       <ul>
-        <li v-for="item in cartStore.cart" :key="item.id" class="cart-item">
+        <li v-for="item in cart" :key="item.id" class="cart-item">
           {{ item.name }} - Quantity: {{ item.quantity }}
-          <button @click="cartStore.removeFromCart(item)">remove</button>
+          <button @click="removeFromCart(item)">remove</button>
         </li>
       </ul>
       <div>
         <h3>Total Cart</h3>
-        <p>{{ cartStore.getTotalCart() }}</p>
+        <p>{{ getTotalCart() }}</p>
       </div>
-      <button @click="cartStore.clearCart">Clear Cart</button>
+      <button @click="clearCart">Clear Cart</button>
     </section>
   </div>
 </template>

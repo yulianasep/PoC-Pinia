@@ -14,11 +14,12 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
+    "@volar/vue-language-core": "1.6.3",
+    "bun-types": "latest",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
     "vitest": "^0.34.6",
-    "vue-tsc": "^1.8.5",
-    "bun-types": "latest"
+    "vue-tsc": "^1.8.5"
   },
   "module": "index.ts"
 }

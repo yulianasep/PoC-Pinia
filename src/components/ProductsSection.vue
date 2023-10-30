@@ -1,28 +1,22 @@
 <script setup lang="ts">
-import { useCartStore } from "../store/useCartStore";
-import { useProductStore } from "../store/useProductsStore";
+import { useStore } from "../composables/useStore";
 
-const cartStore = useCartStore();
-const productStore = useProductStore();
-productStore.loadProducts();
+const { products, addToCart, loadProducts } = useStore();
+loadProducts();
 </script>
 
 <template>
   <section class="product-container">
     <h2>Available Products</h2>
     <div class="products-list">
-      <article
-        v-for="product in productStore.products"
-        :key="product.id"
-        class="product"
-      >
+      <article v-for="product in products" :key="product.id" class="product">
         <img :src="product.image" alt="Product Image" />
         <div class="product-info">
           <h2>{{ product.name }}</h2>
           <p>Price: ${{ product.price }}</p>
           <p>Description: {{ product.description }}</p>
           <p>Available Quantity: {{ product.quantity }}</p>
-          <button @click="cartStore.addToCart(product)">Add to Cart</button>
+          <button @click="addToCart(product)">Add to Cart</button>
         </div>
       </article>
     </div>
